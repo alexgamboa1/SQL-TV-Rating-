@@ -30,6 +30,20 @@ INNER JOIN reviews ON series.id = reviews.series_id
 GROUP BY genre
 ORDER BY avg_rating;
 
+-- Return first and last of reviewer as well as analytics on their ratings: 
+# of reviews, min / max rating, avg rating, and status 
+
+SELECT first_name, last_name, 
+		COUNT(rating) AS COUNT, 
+        IFNULL(MIN(rating),0) AS MIN, 
+        IFNULL(MAX(rating),0) AS MAX, 
+        ROUND(IFNULL(AVG(rating),0)) AS AVG,
+        CASE 
+			WHEN COUNT(rating) >= 1 THEN 'ACTIVE'
+            ELSE 'NON ACTIVE'
+        END AS STATUS
+FROM reviewers LEFT JOIN reviews on reviewers.id = reviews.reviewer_id 
+GROUP BY reviewers.id;
 
 
 
