@@ -4,4 +4,6 @@ In this project, I am apart of a tv show streaming service who wants to know mor
 
 The following is the list of tables and their corresponding column titles: 
 
-- 
+- Reviewers (id, first_name, last_name) 
+- Series (id, title, released_year, genre) 
+- Reviews (id, rating, series_id, reviewer_id)
