@@ -26,5 +26,17 @@ In order to understand the given data it is helpful to create an Entity Relation
 \
 \
 ![](https://github.com/alexgamboa1/SQL-TV-Rating-/blob/master/Data%20Model%20.png) 
+\
+\
+
+Below is an example of the SQL code based on the schema to insert the table `series` along with the names of its column into our database. Series is the table that holds the information on tv series description in the network. Note there are different datatypes representing integers (`int`), dates (`year`), and strings with variable lengths (`varchar`).
+```
+CREATE TABLE series (
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+    title VARCHAR(100), 
+    released_year YEAR(4), 
+    genre VARCHAR(100)
+);
+```
 
 
