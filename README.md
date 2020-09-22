@@ -52,7 +52,19 @@ ON series.id = reviews.series_id;
 SQL can handle data and queries across multiple tables. 
 Join was used to combine the tables based on a primary key. 
 
+### The Service wants to find out what the avg rating of the tv shows were and list them from lowest to highest. Include title and avg rating. 
+```
+SELECT title, AVG(rating) as avg_rating 
+FROM series JOIN reviews ON series.id = reviews.series_id
+-- need to use a groupby for the title 
+GROUP BY series.id 
+ORDER BY avg_rating;
+```
+In this query I used an aggregate function of AVG(rating) with an alias of avg_rating to descripe the new column. 
+In order to aggregate appropriate data for AVG(rating) to work it must be grouped by a field that represents the tv series in this instance it is series.id. 
+Used Order BY to go from lowest to highest. 
 
+###
 
 
 
