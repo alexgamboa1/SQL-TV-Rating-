@@ -64,7 +64,16 @@ In this query I used an aggregate function of AVG(rating) with an alias of avg_r
 In order to aggregate appropriate data for AVG(rating) to work it must be grouped by a field that represents the tv series in this instance it is series.id. 
 Used Order BY to go from lowest to highest. 
 
-###
+### The service wants me to return the first and last name of the reviewers and the rating that each reviewer has given for each series. 
+Organize the query information by last name. 
+```
+SELECT first_name, last_name, rating
+FROM reviewers JOIN reviews 
+ON reviewers.id = reviews.reviewer_id
+ORDER BY last_name;
+```
+Used join to bring the two tables together of the reviewers information and the reviews they gave for each show.
+Return the query by order by of last name to add structure and guidance to the return of the query. 
 
 
 
