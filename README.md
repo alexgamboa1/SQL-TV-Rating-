@@ -116,4 +116,13 @@ Use `COUNT()` to select the count the rating by reviewers.id to see how many rev
 We have applied IFNULL because of the left join and there may be no information so `IFNULL(argument(column), 0)` the zero is set to allow 0 if there is a `NULL` value. Add min and max functions of aggregation. 
 Use `CASE` to create the condition of a status of the active and non active users. We must start with Case, then `WHEN` this happens `THEN` apply this `ELSE` apply this next function. Always end with `END` to close the `CASE`.
 
+### Its important to review the integrity of the reviewers and the data. Return the each series in alphabetical order, the rating, and the reviewers name. Its important to view 
 
+```
+SELECT title, rating, CONCAT(first_name,' ',last_name) AS reviewer
+FROM reviewers JOIN reviews ON reviewers.id = reviews.reviewer_id
+INNER JOIN series ON series.id = reviews.series_id
+ORDER BY title ASC; 
+```
+use Concat to join two type of information from different columns into a single column. 
+Its important to select the proper `JOINS` by using the ERD diagram to pick the specific `PRIMARY KEY` to match the data you want to pull from each of the data source. 
