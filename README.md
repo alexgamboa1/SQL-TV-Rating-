@@ -92,12 +92,28 @@ INNER JOIN reviews ON series.id = reviews.series_id
 GROUP BY genre
 ORDER BY avg_rating;
 ```
-Inner join on reviews and series to find the common relationship in the series, genre, and rating. 
+Inner join on reviews and series to find the common relationship in the series, genre, and rating. Use the ROUND() to insert the column you would like to round add a comma and write the amount of decimals you want the interger to have. 
 Aggregate data with genre with the group by cause to put together the types of tv show series. 
 Use Order By aggregation to organize the data from lowest to highest. 
 
 
-
-
+### The Streaming Service wants the analytics on the reviewers. Give the information of the reviewers by name as well as some quantitative details on on their reviews. Return the amount of reviews, minimum, maximum, average rating, and status of reviewing. 
+```
+SELECT first_name, last_name, 
+		COUNT(rating) AS COUNT,    -- count the ratings by reviewers.id 
+        IFNULL(MIN(rating),0) AS MIN,   -- use if null ( MIN rating, as 0 ) as min 
+        IFNULL(MAX(rating),0) AS MAX, 
+        ROUND(IFNULL(AVG(rating),0)) AS AVG,    
+        CASE                                                                                         
+			WHEN COUNT(rating) >= 1 THEN 'ACTIVE'
+            ELSE 'NON ACTIVE'
+        END AS STATUS
+FROM reviewers LEFT JOIN reviews on reviewers.id = reviews.reviewer_id 
+GROUP BY reviewers.id;
+```
+In this complex query its important to understand that some of the reviewers my not be reviewing at the time "Status" so the relationship between the databases is a left join.`Left join` allows to pull the information only if it matches. Once that is done you can start to pull in information to get quantiative analytics. 
+Use `COUNT()` to select the count the rating by reviewers.id to see how many reviews they have done. 
+We have applied IFNULL because of the left join and there may be no information so `IFNULL(argument(column), 0)` the zero is set to allow 0 if there is a `NULL` value. Add min and max functions of aggregation. 
+Use `CASE` to create the condition of a status of the active and non active users. We must start with Case, then `WHEN` this happens `THEN` apply this `ELSE` apply this next function. Always end with `END` to close the `CASE`.
 
 
