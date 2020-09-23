@@ -84,6 +84,18 @@ WHERE reviews.rating IS NULL;
 ```
 For this question I used a left join to bring all the information that matches with the tv series information. If there was no reviews information that matches the series there would be a NULL value. `NULL` is a special value in SQL that represents missing or unknown data. Used a `WHERE` clause to tell the query if reviews under rating was null. Also gave an alias to the title for proper classification of the new table. 
 
+### The streaming service company wants to find out what the average rating is per genre. The company has money to acquire new films and produce new films for next year production. 
+```
+SELECT genre, ROUND(AVG(rating), 2) AS avg_rating
+FROM series
+INNER JOIN reviews ON series.id = reviews.series_id
+GROUP BY genre
+ORDER BY avg_rating;
+```
+Inner join on reviews and series to find the common relationship in the series, genre, and rating. 
+Aggregate data with genre with the group by cause to put together the types of tv show series. 
+Use Order By aggregation to organize the data from lowest to highest. 
+
 
 
 
